@@ -1,5 +1,7 @@
+package controller;
+
 import DB.UsersDB;
-import Model.User;
+import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -15,7 +17,7 @@ public class LoginServlet extends HttpServlet {
 
             if(user != null){
                 HttpSession httpSession = req.getSession();
-                httpSession.setAttribute("user_info", user);
+                httpSession.setAttribute("user", user);
 
                 if(req.getParameterMap().containsKey("remember")){
                     Cookie cookie = new Cookie("username", req.getParameter("username"));
@@ -28,7 +30,7 @@ public class LoginServlet extends HttpServlet {
                     resp.addCookie(cookie);
                 }
 
-                resp.sendRedirect("./welcome.jsp");
+                resp.sendRedirect("WEB-INF/welcome.jsp");
             }
             else{
                 resp.sendRedirect("./");
