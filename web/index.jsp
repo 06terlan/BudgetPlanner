@@ -13,13 +13,13 @@
   <body>
     <form action="./login" method="post">
       <div>
-        <label> Username: <input type="text" value="${cookie.username.value}" name="username"></label>
+        <label> Username: <input type="text" value="${cookie.username.value}" name="username"/> </label>
       </div>
       <div>
-        <label> Password: <input type="password" value="" name="password" /></label>
+        <label> Password: <input type="password" value="" name="password" /> </label>
       </div>
       <div>
-        <label> Remember me: <input type="checkbox" name="remember" ${cookie.containsKey("username")?"checked":""} /> </label>
+        <label> Remember me1: <input type="checkbox" name="remember" ${cookie.containsKey("username")?"checked":""} /> </label>
       </div>
 
       <input type="submit">
