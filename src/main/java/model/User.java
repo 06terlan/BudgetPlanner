@@ -1,7 +1,8 @@
 package model;
 
-public class User {
-    private int id;
+public class User implements Model {
+    private long id;
+    private String tableName;
     private String username;
     private String password;
 
@@ -10,12 +11,22 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
+    @Override
+    public long getId() {
         return id;
+    }
+
+    @Override
+    public String getTableName() {
+        return tableName;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
 }
