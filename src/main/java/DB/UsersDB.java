@@ -1,6 +1,6 @@
 package DB;
 
-import Model.User;
+import model.User;
 
 import java.util.Hashtable;
 import java.util.Map;
