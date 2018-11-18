@@ -1,15 +1,17 @@
 package controller;
 
-import DB.UsersDB;
+import dao.Users;
 import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     @Override
@@ -45,7 +47,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (messages.isEmpty()) {
-            User user = UsersDB.getUser(req.getParameter("username"), req.getParameter("password"));
+            User user = Users.getUser(req.getParameter("username"), req.getParameter("password"));
 
             if (user != null) {
                 req.getSession().setAttribute("user", user);
