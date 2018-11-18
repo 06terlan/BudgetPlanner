@@ -1,17 +1,19 @@
 package dao;
 
+import model.Model;
+
 import java.util.List;
 import java.util.Optional;
 
-public interface Dao<Model> {
+public interface Dao<T extends Model> {
 
-    Optional<Model> get(long id);
+    Optional<T> get(long id);
 
-    List<Model> getAll();
+    List<T> getAll();
 
-    void save(Model t);
+    void save(T t);
 
-    void update(Model t, String[] params);
+    void update(T t, String[] params);
 
-    void delete(Model t);
+    void delete(T t);
 }
