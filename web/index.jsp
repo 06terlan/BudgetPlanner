@@ -19,7 +19,7 @@
         <label> Password: <input type="password" value="" name="password" /> </label>
       </div>
       <div>
-        <label> Remember me1: <input type="checkbox" name="remember" ${cookie.containsKey("username")?"checked":""} /> </label>
+        <label> Remember me: <input type="checkbox" name="remember" ${cookie.containsKey("username")?"checked":""} /> </label>
       </div>
 
       <input type="submit">
