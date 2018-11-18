@@ -13,14 +13,8 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        boolean authorized = true;
-
-        if (authorized) {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/index.jsp");
-            dispatcher.forward(req, resp);
-        } else {
-            resp.sendRedirect("/login");
-        }
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/index.jsp");
+        dispatcher.forward(req, resp);
 
     }
 }
