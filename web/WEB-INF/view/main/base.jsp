@@ -6,28 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Budget Planner Dashboard</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-    <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-</head>
-
+    <%@ include file="head.jsp" %>
 <body>
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation">
@@ -342,28 +324,28 @@
 </div>
 
 <!-- Mainly scripts -->
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="<c:url value='/assets/js/jquery-2.1.1.js' />"></script>
+<script src="<c:url value='/assets/js/bootstrap.min.js' />"></script>
+<script src="<c:url value='/assets/js/jquery.metisMenu.js' />"></script>
+<script src="<c:url value='/assets/js/jquery.slimscroll.min.js' />"></script>
 
 <!-- Flot -->
-<script src="js/plugins/flot/jquery.flot.js"></script>
-<script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script src="js/plugins/flot/jquery.flot.spline.js"></script>
-<script src="js/plugins/flot/jquery.flot.resize.js"></script>
-<script src="js/plugins/flot/jquery.flot.pie.js"></script>
+<script src="<c:url value='/assets/js/jquery.flot.js'/>"></script>
+<script src="<c:url value='/assets/js/jquery.flot.tooltip.min.js'/>"></script>
+<script src="<c:url value='/assets/js/jquery.flot.spline.js'/>"></script>
+<script src="<c:url value='/assets/js/jquery.flot.resize.js'/>"></script>
+<script src="<c:url value='/assets/js/jquery.flot.pie.js'/>"></script>
 
 <!-- Peity -->
-<script src="js/plugins/peity/jquery.peity.min.js"></script>
-<script src="js/demo/peity-demo.js"></script>
+<script src="<c:url value='/assets/js/jquery.peity.min.js'/>"></script>
+<script src="<c:url value='/assets/js/peity-demo.js'/>"></script>
 
 <!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
+<script src="<c:url value='/assets/js/inspinia.js'/>"></script>
+<script src="<c:url value='/assets/js/pace.min.js'/>"></script>
 
 <!-- jQuery UI -->
-<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="<c:url value='/assets/js/jquery-ui.min.js'/>"></script>
 </body>
 </html>
 
