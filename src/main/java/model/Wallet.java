@@ -8,7 +8,11 @@ public class Wallet implements Model {
     private User owner;
     private double balance;
 
-    Wallet() {}
+    Wallet() {};
+
+    public Wallet(long id) {
+        this.id = id;
+    }
 
     Wallet(int id, String name, User user, Double initialBalance) {
         this.id = id;
@@ -17,17 +21,19 @@ public class Wallet implements Model {
         this.user_id = user.getId();
     }
 
-    public User getAccount() {
+    public User getOwner() {
         return owner;
     }
+
+    public void setOwner(User owner) { this.owner = owner; }
 
     public String getName() {
         return name;
     }
 
-    public double getBalance() {
-        return balance;
-    }
+    public void setName(String name) { this.name = name; }
+
+    public double getBalance() { return balance; }
 
     public void setBalance(double balance) {
         this.balance = balance;
@@ -39,8 +45,6 @@ public class Wallet implements Model {
     }
 
     @Override
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(long id) { this.id = id; }
 
 }
