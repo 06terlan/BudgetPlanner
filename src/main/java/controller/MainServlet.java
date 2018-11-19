@@ -18,14 +18,6 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter w = resp.getWriter();
-        Categories categoriesDao = new Categories();
-        Category cat  = categoriesDao.get(1);
-        w.print(cat.getName());
-        /*List<Category> categories = categoriesDao.getAll();
-        for (Category cat : categories) {
-            w.print(cat.getName());
-        }*/
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/view/main/base.jsp");
         dispatcher.forward(req, resp);
     }
