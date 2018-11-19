@@ -1,4 +1,4 @@
-package db;
+package DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,13 +30,9 @@ public class DBConnection {
                 this.connection = DriverManager.getConnection("jdbc:mysql://localhost/" + dbName + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", userName, password);
             }
         } catch (ClassNotFoundException e) {
-
             e.printStackTrace();
-
         } catch (SQLException e) {
-
             e.printStackTrace();
-
         }
 
         return connection;

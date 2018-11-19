@@ -2,7 +2,6 @@ package model;
 
 public class User implements Model {
     private long id;
-    private String tableName;
     private String username;
     private String password;
 
@@ -17,9 +16,10 @@ public class User implements Model {
     }
 
     @Override
-    public String getTableName() {
-        return tableName;
+    public void setId(long id) {
+        this.id = id;
     }
+
 
     public String getUsername() {
         return username;

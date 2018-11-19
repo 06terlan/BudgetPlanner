@@ -3,7 +3,6 @@ package model;
 public class Category implements Model {
 
     private long id;
-    private String tableName;
     private String name;
     private String icon;
     private int sort_order;
@@ -18,18 +17,22 @@ public class Category implements Model {
 
     public static final long ROOT_CATEGORY = 0;
 
-    Category() {}
+    public Category() {}
 
-    Category(int id, String name, User owner) {
+    public Category(long id) {
+        this.id = id;
+    }
+
+    public Category(long id, String name, User owner) {
         this.id = id;
         this.name = name;
-        this.sort_order = id;
+        this.sort_order = (int) id;
         this.type = TYPE_EXPENCE;
         this.owner = owner;
         this.user_id = owner.getId();
     }
 
-    Category(int id, String name, String type, User owner) {
+    public Category(int id, String name, String type, User owner) {
         this.id = id;
         this.name = name;
         this.sort_order = id;
@@ -51,7 +54,47 @@ public class Category implements Model {
     }
 
     @Override
-    public String getTableName() {
-        return tableName;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public int getSort_order() {
+        return sort_order;
+    }
+
+    public void setSort_order(int sort_order) {
+        this.sort_order = sort_order;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public Category getParent() {
+        return parent;
+    }
+
+    public void setParent(Category parent) {
+        this.parent = parent;
     }
 }

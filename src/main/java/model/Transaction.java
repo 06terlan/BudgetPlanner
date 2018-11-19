@@ -5,7 +5,6 @@ import java.util.Date;
 public class Transaction implements Model {
 
     private long id;
-    private String tableName;
     private double amount;
     private String type;
     private Category category;
@@ -84,7 +83,8 @@ public class Transaction implements Model {
     }
 
     @Override
-    public String getTableName() {
-        return tableName;
+    public void setId(long id) {
+        this.id = id;
     }
+
 }
