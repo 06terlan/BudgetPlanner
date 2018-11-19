@@ -10,7 +10,9 @@ public class Wallet implements Model {
 
     public Wallet() {}
 
-    public Wallet(int id, String name, User user, Double initialBalance) {
+    public Wallet(long id) { this.id = id; }
+
+    public Wallet(long id, String name, User user, Double initialBalance) {
         this.id = id;
         this.name = name;
         this.balance = initialBalance;

@@ -1,9 +1,9 @@
 package dao;
 
 import DB.DBConnection;
-import model.Category;
-import model.User;
-import model.Wallet;
+import models.Category;
+import models.User;
+import models.Wallet;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
