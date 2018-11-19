@@ -263,3 +263,55 @@ function WinMove() {
 }
 
 
+$(function (){
+   'use strict';
+
+   /*
+   adding wallet
+    */
+   $("#addWalletBtn").click(function () {
+       $("#addWallet form")[0].reset();
+       $("#addWallet [name]").css("border", "");
+   });
+   $("#addWallet button.btn-primary").click(function () {
+       let name = $("#addWallet [name='name']").val().trim(),
+           currency = $("#addWallet [name='currency']").val(),
+           initialBalance = $("#addWallet [name='initialBalance']").val().trim(),
+           error = true;
+
+       $("#addWallet [name='name']").css("border", "");
+       $("#addWallet [name='initialBalance']").css("border", "");
+       if(name === ""){
+           error = false;
+           $("#addWallet [name='name']").css("border", "1px dotted red");
+       }
+       if(initialBalance === "" || isNaN(initialBalance)){
+           error = false;
+           $("#addWallet [name='initialBalance']").css("border", "1px dotted red");
+       }
+
+       if(error){
+            $("#addWallet").modal('hide');
+            $.post("/wallet", {name: name, currency: currency, initialBalance: initialBalance}).done(function (data) {
+                data = JSON.parse(data);
+                console.log(data);
+                $("#wallets").prepend(
+                    $("<li>").append(
+                        $("<a>",{
+                            "href": "/home?wallet=" + data.id,
+                            "text": " " + data.name
+                        }).prepend(
+                            $("<i>", {
+                                "class": "fa fa-cc-visa"
+                            })
+                        )
+                    )
+                );
+
+                toastr.success("Wallet added!");
+            });
+       }
+   });
+});
+
+

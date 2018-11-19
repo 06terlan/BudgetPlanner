@@ -1,6 +1,6 @@
 package dao;
 
-import model.Category;
+import models.Category;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

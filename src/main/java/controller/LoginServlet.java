@@ -1,7 +1,7 @@
 package controller;
 
 import dao.Users;
-import model.User;
+import models.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 
             if (user != null) {
                 req.getSession().setAttribute("user", user);
-                resp.sendRedirect(req.getContextPath() + "/");
+                resp.sendRedirect(req.getContextPath() + "/home");
                 return;
             } else {
                 messages.put("login", "Unknown login, please try again");

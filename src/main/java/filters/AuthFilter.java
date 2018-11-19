@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-//@WebFilter({"/*"})
+@WebFilter({"/*"})
 public class AuthFilter implements Filter {
 
     private List<String> excludedUrls;

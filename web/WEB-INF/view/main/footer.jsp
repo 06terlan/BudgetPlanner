@@ -19,6 +19,9 @@
 <script src="<c:url value='/assets/js/inspinia.js'/>"></script>
 <script src="<c:url value='/assets/js/pace.min.js'/>"></script>
 
+<!-- Toastr -->
+<script src="<c:url value='/assets/js/toastr.min.js'/>"></script>
+
 <!-- jQuery UI -->
 <script src="<c:url value='/assets/js/jquery-ui.min.js'/>"></script>
 <script src="<c:url value='/assets/js/icheck.min.js'/>"></script>
