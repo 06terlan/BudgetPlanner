@@ -19,7 +19,7 @@ public class UserDao implements Dao<User> {
         Connection connection = database.getConnection();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM " + this.getTableName() + " WHERE username=" + username + " AND password=" + password);
+            ResultSet rs = statement.executeQuery("SELECT * FROM " + this.getTableName() + " WHERE username='" + username + "' AND password='" + password + "';");
             if(rs.next())
             {
                 return extractFromResultSet(rs);

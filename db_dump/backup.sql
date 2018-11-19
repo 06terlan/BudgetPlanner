@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   CONSTRAINT `transaction_wallet_id_fk` FOREIGN KEY (`wallet_id`) REFERENCES `wallet` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы budget_planner.transaction: ~31 rows (приблизительно)
+-- Дамп данных таблицы budget_planner.transaction: ~34 rows (приблизительно)
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
 INSERT INTO `transaction` (`id`, `category_id`, `wallet_id`, `amount`, `type`, `date`, `description`) VALUES
 	(1, 1, 1, 12.15, NULL, '2018-09-12', 'Imperial buffet'),
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 -- Дамп данных таблицы budget_planner.user: ~3 rows (приблизительно)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `name`, `password`, `email`) VALUES
+INSERT INTO `user` (`id`, `username`, `password`, `email`) VALUES
 	(1, 'Tarlan', '123', 'tabdullayev@mum.edu'),
 	(2, 'Zair', '123', 'zolimov@mum.edu'),
 	(3, 'Olzhas', '123', 'okalmurzayev@mum.edu');
