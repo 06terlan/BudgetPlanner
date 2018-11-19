@@ -2,10 +2,13 @@ package dao;
 
 import model.User;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class Users implements Dao<User> {
     private static List<User> users = new ArrayList<>();
+    private String tableName = "user";
 
     static {
         users.add(new User("Tarlan", "123"));
@@ -22,32 +25,17 @@ public class Users implements Dao<User> {
     }
 
     @Override
-    public Optional<User> get(long id) {
-        for (User user : users) {
-            if (user.getId() == id) {
-                return Optional.of(user);
-            }
-        }
+    public String getTableName() {
+        return tableName;
+    }
+
+    @Override
+    public String[] getFields() {
+        return new String[0];
+    }
+
+    @Override
+    public User extractFromResultSet(ResultSet rs) throws SQLException {
         return null;
-    }
-
-    @Override
-    public List<User> getAll() {
-        return null;
-    }
-
-    @Override
-    public void save(User user) {
-
-    }
-
-    @Override
-    public void update(User user, String[] params) {
-
-    }
-
-    @Override
-    public void delete(User user) {
-
     }
 }

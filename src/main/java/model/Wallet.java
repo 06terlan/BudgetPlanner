@@ -3,7 +3,6 @@ package model;
 public class Wallet implements Model {
 
     private long id;
-    private String tableName;
     private String name;
     private long user_id;
     private User owner;
@@ -40,7 +39,8 @@ public class Wallet implements Model {
     }
 
     @Override
-    public String getTableName() {
-        return tableName;
+    public void setId(long id) {
+        this.id = id;
     }
+
 }
