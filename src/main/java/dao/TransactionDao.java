@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TransactionDao implements Dao<Category> {
+public class TransactionDao implements Dao<Transaction> {
 
     private String tableName = "transaction";
     private String[] fields = {"amount", "type", "date", "description", "category_id", "wallet_id"};

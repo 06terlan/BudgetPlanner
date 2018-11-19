@@ -1,6 +1,7 @@
 package controller;
 
 import com.google.gson.Gson;
+import dao.WalletDao;
 import models.User;
 import models.Wallet;
 
@@ -26,7 +27,8 @@ public class WalletServlet extends HttpServlet {
             double initialBalance = Double.parseDouble(req.getParameter("initialBalance").toString());
 
             Wallet wallet = new Wallet(0, name, user, initialBalance);
-            int id = 0;
+            WalletDao walletDao = new WalletDao();
+            wallet = walletDao.save(wallet);
 
 
             PrintWriter printWriter = resp.getWriter();

@@ -46,7 +46,7 @@ public interface Dao<T extends Model> {
     };
 
     default T save(T t) {
-        if (this.get(t.getId()) != null) {
+        if (t.getId() > 0) {
             t = this.update(t);
         } else {
             t = this.insert(t);
@@ -65,7 +65,7 @@ public interface Dao<T extends Model> {
             }
             PreparedStatement statement = connection.prepareStatement("INSERT INTO " + this.getTableName() + "(" + String.join(",", fields) + ") VALUES (" + String.join(",", values) + ")", Statement.RETURN_GENERATED_KEYS);
 
-            for (int i = 1; i <= fields.length; i++) {
+            for (int i = 0; i < fields.length; i++) {
                 try {
                     statement.setString(i, t.getClass().getField(fields[i]).toString());
                 } catch (NoSuchFieldException e) {
