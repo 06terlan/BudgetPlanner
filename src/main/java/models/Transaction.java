@@ -14,19 +14,28 @@ public class Transaction implements Model {
 
     Transaction() {}
 
-    Transaction(int id, double amount, Category category, Wallet wallet) {
+    public Transaction(long id, double amount, Category category, Wallet wallet) {
         this.id = id;
         this.amount = amount;
         this.category = category;
         this.wallet = wallet;
     }
 
-    Transaction(int id, double amount, Category category, Wallet wallet, String description) {
+    public Transaction(long id, double amount, Category category, Wallet wallet, String description) {
         this.id = id;
         this.amount = amount;
         this.category = category;
         this.wallet = wallet;
         this.description = description;
+    }
+
+    public Transaction(long id, double amount, Category category, Wallet wallet, String description, Date date) {
+        this.id = id;
+        this.amount = amount;
+        this.category = category;
+        this.wallet = wallet;
+        this.description = description;
+        this.date = date;
     }
 
     public double getAmount() {
@@ -83,8 +92,6 @@ public class Transaction implements Model {
     }
 
     @Override
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(long id) { this.id = id; }
 
 }

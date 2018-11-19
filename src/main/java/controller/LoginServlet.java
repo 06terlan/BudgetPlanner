@@ -1,7 +1,7 @@
 package controller;
 
-import dao.Users;
-import models.User;
+import dao.UserDao;
+import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,7 +47,8 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (messages.isEmpty()) {
-            User user = Users.getUser(req.getParameter("username"), req.getParameter("password"));
+            UserDao userDao = new UserDao();
+            User user = userDao.login(req.getParameter("username"), req.getParameter("password"));
 
             if (user != null) {
                 req.getSession().setAttribute("user", user);

@@ -13,7 +13,6 @@ public interface Dao<T extends Model> {
     default T get(long id) {
         DBConnection database = DBConnection.getInstance();
         Connection connection = database.getConnection();
-        System.out.print(connection);
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM " + this.getTableName() + " WHERE id=" + id);
@@ -129,5 +128,5 @@ public interface Dao<T extends Model> {
 
     String[] getFields();
 
-    T extractFromResultSet(ResultSet rs) throws SQLException;
+    <T extends Model> T extractFromResultSet(ResultSet rs) throws SQLException;
 }
