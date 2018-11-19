@@ -7,6 +7,8 @@
     <link href="<c:url value='/assets/css/bootstrap.min.css' />" rel="stylesheet">
     <link href="<c:url value='/assets/css/font-awesome.css' />" rel="stylesheet">
 
+    <link href="<c:url value='/assets/css/custom.css' />" rel="stylesheet">
+
     <!-- Toastr style -->
     <link href="<c:url value='/assets/css/toastr.min.css' />" rel="stylesheet">
 
