@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 
             if (user != null) {
                 req.getSession().setAttribute("user", user);
-                resp.sendRedirect(req.getContextPath() + "/");
+                resp.sendRedirect(req.getContextPath() + "/home");
                 return;
             } else {
                 messages.put("login", "Unknown login, please try again");
