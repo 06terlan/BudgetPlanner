@@ -1,11 +1,15 @@
 package dao;
 
+import DB.DBConnection;
 import model.Category;
 import model.Transaction;
 import model.Wallet;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TransactionDao implements Dao<Category> {
@@ -21,6 +25,26 @@ public class TransactionDao implements Dao<Category> {
     @Override
     public String[] getFields() {
         return fields;
+    }
+
+    public ArrayList<Transaction> getTransactions(Category category, Wallet wallet) {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        DBConnection database = DBConnection.getInstance();
+        Connection connection = database.getConnection();
+
+        try {
+            Statement statement=connection.createStatement();
+            String sql="SELECT * FROM transaction WHERE category_id = " + category.getId() + " AND wallet_id = " + wallet.getId() + ";" ;
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()){
+                Transaction transaction = this.extractFromResultSet(rs);
+                transactions.add(transaction);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactions;
     }
 
     @Override

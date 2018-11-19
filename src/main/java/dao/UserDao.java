@@ -1,6 +1,7 @@
 package dao;
 
 import DB.DBConnection;
+import model.Category;
 import model.User;
 
 import java.sql.Connection;
@@ -10,7 +11,6 @@ import java.sql.Statement;
 import java.util.*;
 
 public class UserDao implements Dao<User> {
-    private static List<User> users = new ArrayList<>();
     private String tableName = "user";
     private String[] fields = {"username", "email", "password"};
 
@@ -36,9 +36,7 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public String[] getFields() {
-        return new String[0];
-    }
+    public String[] getFields() { return fields; }
 
     @Override
     public User extractFromResultSet(ResultSet rs) throws SQLException {

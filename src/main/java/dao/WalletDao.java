@@ -1,11 +1,15 @@
 package dao;
 
+import DB.DBConnection;
 import model.Category;
 import model.User;
 import model.Wallet;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WalletDao implements Dao<Category> {
@@ -23,6 +27,25 @@ public class WalletDao implements Dao<Category> {
         return fields;
     }
 
+    public ArrayList<Wallet> getUserWallets(User user) {
+        ArrayList<Wallet> wallets = new ArrayList<>();
+        DBConnection database = DBConnection.getInstance();
+        Connection connection = database.getConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            String sql="SELECT * FROM " + this.getTableName() + " WHERE user_id = " + user.getId() + "";
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()){
+                Wallet wallet = this.extractFromResultSet(rs);
+                wallets.add(wallet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wallets;
+    }
 
     @Override
     public Wallet extractFromResultSet(ResultSet rs) throws SQLException {

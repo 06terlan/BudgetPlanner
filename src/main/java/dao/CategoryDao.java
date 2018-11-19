@@ -1,9 +1,14 @@
 package dao;
 
+import DB.DBConnection;
 import model.Category;
+import model.User;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CategoryDao implements Dao<Category> {
@@ -19,6 +24,26 @@ public class CategoryDao implements Dao<Category> {
     @Override
     public String[] getFields() {
         return fields;
+    }
+
+    public ArrayList<Category> getUserCategories(User owner) {
+        ArrayList<Category> categories = new ArrayList<>();
+        DBConnection database = DBConnection.getInstance();
+        Connection connection = database.getConnection();
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "SELECT * FROM " + this.getTableName() + " WHERE user_id = '" + owner.getId() + "'";
+            ResultSet rs = statement.executeQuery(sql);
+
+            while(rs.next())
+            {
+                Category category = this.extractFromResultSet(rs);
+                categories.add(category);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categories;
     }
 
     @Override
