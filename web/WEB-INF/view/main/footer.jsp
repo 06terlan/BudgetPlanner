@@ -21,3 +21,12 @@
 
 <!-- jQuery UI -->
 <script src="<c:url value='/assets/js/jquery-ui.min.js'/>"></script>
+<script src="<c:url value='/assets/js/icheck.min.js'/>"></script>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+</script>
