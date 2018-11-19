@@ -1,4 +1,4 @@
-package model;
+package models;
 
 public class Wallet implements Model {
 
@@ -8,13 +8,9 @@ public class Wallet implements Model {
     private User owner;
     private double balance;
 
-    Wallet() {};
+    public Wallet() {}
 
-    public Wallet(long id) {
-        this.id = id;
-    }
-
-    Wallet(int id, String name, User user, Double initialBalance) {
+    public Wallet(int id, String name, User user, Double initialBalance) {
         this.id = id;
         this.name = name;
         this.balance = initialBalance;
