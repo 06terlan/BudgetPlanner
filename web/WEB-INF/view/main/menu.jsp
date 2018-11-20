@@ -1,3 +1,7 @@
+<%@ page import="dao.WalletDao" %>
+<%@ page import="models.Wallet" %>
+<%@ page import="java.util.List" %>
+<%@ page import="models.User" %>
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav" id="side-menu">
@@ -9,7 +13,13 @@
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
                              </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs" id="wallets">
-                        <%--<li><a href="profile.html"><i class="fa fa-cc-visa"></i> Wallet</a></li>--%>
+                        <%
+                            List<Wallet> wallets = (new WalletDao()).getUserWallets((User) request.getSession().getAttribute("user"));
+                            request.setAttribute("wallets", wallets);
+                        %>
+                        <c:forEach items="${wallets}" var="wallet">
+                            <li><a href="home?wallet=${wallet.id}"><i class="fa fa-cc-visa"></i> ${wallet.name}</a></li>
+                        </c:forEach>
 
                         <li class="divider"></li>
                         <li><a data-toggle="modal" data-target="#addWallet" id="addWalletBtn"><i class="fa fa-plus-square-o"></i> Add wallet</a></li>

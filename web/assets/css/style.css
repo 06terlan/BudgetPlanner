@@ -6422,3 +6422,6 @@ body.skin-3 {
     display: none;
   }
 }
+#wallets li a span.badge{
+  margin-left: 20px;
+}

@@ -304,6 +304,11 @@ $(function (){
                             $("<i>", {
                                 "class": "fa fa-cc-visa"
                             })
+                        ).append(
+                            $("<span>",{
+                                "class": "badge badge-info",
+                                "text": data.balance
+                            })
                         )
                     )
                 );
