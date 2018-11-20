@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 20 2018 г., 04:47
+-- Время создания: Ноя 20 2018 г., 09:35
 -- Версия сервера: 10.1.31-MariaDB
 -- Версия PHP: 5.6.34
 
@@ -73,7 +73,14 @@ INSERT INTO `category` (`id`, `name`, `sort_order`, `type`, `user_id`, `icon`, `
 (28, 'Salary', 1, 'income', 3, 'fa-money', 0),
 (29, 'Other', 1, 'income', 3, 'fa-bar', 0),
 (30, 'Food', 1, 'expence', 3, 'fa-cutlery', 0),
-(31, 'Gifts', 1, 'expence', 2, 'fa-gift', 0);
+(31, 'Gifts', 1, 'expence', 2, 'fa-gift', 0),
+(32, 'Cat', 9, 'expence', 3, 'fa-circle', 0),
+(33, 'Bus', 2, 'expence', 3, 'fa-bus', 24),
+(34, 'Car', 3, 'expence', 3, 'fa-car', 24),
+(35, 'Train', 1, 'expence', 3, 'fa-train', 24),
+(36, 'Motorcycle', 2, 'expence', 3, 'fa-motorcycle', 24),
+(37, 'Dog', 14, 'expence', 3, 'fa-square', 0),
+(38, 'Mouse', 15, 'expence', 3, 'fa-bar', 0);
 
 -- --------------------------------------------------------
 
@@ -223,7 +230,7 @@ ALTER TABLE `wallet`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT для таблицы `transaction`
