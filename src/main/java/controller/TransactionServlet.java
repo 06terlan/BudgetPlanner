@@ -49,6 +49,12 @@ public class TransactionServlet extends HttpServlet {
             TransactionDao transactionDao = new TransactionDao();
             Transaction transaction = new Transaction(0 ,amount ,category ,wallet ,description ,date);
             transactionDao.save(transaction);
+
+            if(category.getType().equals("income")) wallet.setBalance(wallet.getBalance() + amount);
+            else wallet.setBalance(wallet.getBalance() - amount);
+
+            WalletDao walletDao = new WalletDao();
+            walletDao.save(wallet);
         }
     }
 }
