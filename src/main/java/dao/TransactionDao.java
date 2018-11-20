@@ -16,6 +16,8 @@ public class TransactionDao implements Dao<Transaction> {
 
     private String tableName = "transaction";
     private String[] fields = {"amount", "type", "date", "description", "category_id", "wallet_id"};
+    private Wallet wallet;
+    private Category category;
 
     @Override
     public String getTableName() {
@@ -28,6 +30,8 @@ public class TransactionDao implements Dao<Transaction> {
     }
 
     public ArrayList<Transaction> getTransactions(Category category, Wallet wallet) {
+        this.category = category;
+        this.wallet = wallet;
         ArrayList<Transaction> transactions = new ArrayList<>();
         DBConnection database = DBConnection.getInstance();
         Connection connection = database.getConnection();
@@ -52,8 +56,8 @@ public class TransactionDao implements Dao<Transaction> {
         Transaction transaction = new Transaction(
                 rs.getLong("id"),
                 rs.getDouble("amount"),
-                new Category(rs.getLong("category_id")),
-                new Wallet(rs.getLong("wallet_id")),
+                category,
+                wallet,
                 rs.getString("description"),
                 rs.getDate("date")
         );
