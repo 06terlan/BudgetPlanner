@@ -51,7 +51,7 @@
                 </c:if>
             </c:forEach>
             <li>
-                <a href="/new-category"><i class="fa fa-plus"></i> <span class="nav-label">New Category </span></a>
+                <a data-toggle="modal" data-target="#addCategory" id="addCategoryBtn"><i class="fa fa-plus"></i> <span class="nav-label">New Category </span></a>
             </li>
         </ul>
 
