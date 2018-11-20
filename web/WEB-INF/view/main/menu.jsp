@@ -17,10 +17,10 @@
                     <ul class="dropdown-menu animated fadeInRight m-t-xs" id="wallets">
                         <%
                             List<Wallet> wallets = (new WalletDao()).getUserWallets((User) request.getSession().getAttribute("user"));
-                            request.setAttribute("wallets", wallets);
+                            pageContext.setAttribute("wallets", wallets);
                         %>
                         <c:forEach items="${wallets}" var="wallet">
-                            <li><a href="home?wallet=${wallet.id}"><i class="fa fa-cc-visa"></i> ${wallet.name}</a></li>
+                            <li><a href="home?wallet=${wallet.id}"><i class="fa fa-cc-visa"></i> ${wallet.name}<span class="badge badge-info">$${wallet.balance}</span></a></li>
                         </c:forEach>
 
                         <li class="divider"></li>
