@@ -1,5 +1,6 @@
 package models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Transaction implements Model {
@@ -19,15 +20,15 @@ public class Transaction implements Model {
     public Transaction(long id, double amount, Category category, Wallet wallet) {
         this.id = id;
         this.amount = amount;
-        this.category = category;
-        this.wallet = wallet;
+        setWallet(wallet);
+        setCategory(category);
     }
 
     public Transaction(long id, double amount, Category category, Wallet wallet, String description) {
         this.id = id;
         this.amount = amount;
-        this.category = category;
-        this.wallet = wallet;
+        setWallet(wallet);
+        setCategory(category);
         this.description = description;
     }
 
@@ -35,7 +36,8 @@ public class Transaction implements Model {
         this.id = id;
         this.amount = amount;
         this.category = category;
-        this.wallet = wallet;
+        setWallet(wallet);
+        setCategory(category);
         this.description = description;
         this.date = date;
     }
@@ -86,7 +88,11 @@ public class Transaction implements Model {
         this.description = description;
     }
 
-    public Date getDate() {
+    public String getDate() {
+        return new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+
+    public Date getDate2() {
         return date;
     }
 

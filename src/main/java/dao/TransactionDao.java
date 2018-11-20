@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class TransactionDao implements Dao<Transaction> {
 
     private String tableName = "transaction";
-    private String[] fields = {"amount", "type", "date", "description", "category_id", "wallet_id"};
+    private String[] fields = {"amount", /*"type",*/ "date", "description", "category_id", "wallet_id"};
     private Wallet wallet;
     private Category category;
 

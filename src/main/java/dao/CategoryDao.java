@@ -46,6 +46,27 @@ public class CategoryDao implements Dao<Category> {
         return categories;
     }
 
+    public Category getCategoryById(int id) {
+        DBConnection database = DBConnection.getInstance();
+        Connection connection = database.getConnection();
+        Category category = null;
+
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "SELECT * FROM " + this.getTableName() + " WHERE id = '" + id + "'";
+            ResultSet rs = statement.executeQuery(sql);
+
+            if(rs.next())
+            {
+                category = this.extractFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return category;
+    }
+
     @Override
     public Category extractFromResultSet(ResultSet rs) throws SQLException {
         Category category = new Category(rs.getLong("id"));

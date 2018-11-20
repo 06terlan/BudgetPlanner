@@ -98,7 +98,7 @@
             </div>
             <div class="col-lg-3">
                 <h2>
-                    <a data-toggle="modal" class="btn btn-primary" href="#addTransaction"><i class="fa fa-plus"></i> Add transaction</a>
+                    <a data-toggle="modal" class="btn btn-primary" href="#addTransaction" id="addTransactionBtn"><i class="fa fa-plus"></i> Add transaction</a>
                 </h2>
             </div>
         </div>

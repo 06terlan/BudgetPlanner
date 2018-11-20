@@ -46,16 +46,16 @@ public class MainServlet extends HttpServlet {
                 for (Transaction transaction: transactions){
                     allTrans.add(transaction);
                     total += transaction.getAmount();
-                    if(transaction.getDate().getMonth() == Calendar.getInstance().get(Calendar.MONTH)){
+                    if(transaction.getDate2().getMonth() == Calendar.getInstance().get(Calendar.MONTH)){
                         totalThisMonth += transaction.getAmount();
                     }
                     if(category.getType().equals("income")){
                         totalIncome += transaction.getAmount();
-                        monthlyIncome[transaction.getDate().getMonth()]+= transaction.getAmount();
+                        monthlyIncome[transaction.getDate2().getMonth()]+= transaction.getAmount();
                     }
                     else if(category.getType().equals("expence")){
                         totalExpences += transaction.getAmount();
-                        monthlyExpence[transaction.getDate().getMonth()]+= transaction.getAmount();
+                        monthlyExpence[transaction.getDate2().getMonth()]+= transaction.getAmount();
                     }
                 }
             }
@@ -66,16 +66,17 @@ public class MainServlet extends HttpServlet {
         req.setAttribute("monthlyIncome", gson.toJson(monthlyIncome));
         req.setAttribute("monthlyExpence", gson.toJson(monthlyExpence));
 
-        req.setAttribute("total", total);
-        req.setAttribute("totalExpences", totalExpences);
-        req.setAttribute("totalIncome", totalIncome);
-        req.setAttribute("totalThisMonth", totalThisMonth);
+        req.setAttribute("total", String.format("%.02f", total));
+        req.setAttribute("totalExpences", String.format("%.02f", totalExpences));
+        req.setAttribute("totalIncome", String.format("%.02f", totalIncome));
+        req.setAttribute("totalThisMonth", String.format("%.02f", totalThisMonth));
 
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
 
-        req.setAttribute("totalExpencesPer", total==0?0:decimalFormat.format(totalExpences * 100 / total));
-        req.setAttribute("totalIncomePer", total==0?0:decimalFormat.format(totalIncome * 100 / total));
-        req.setAttribute("totalThisMonthPer", total==0?0:decimalFormat.format(totalThisMonth * 100 / total));
+        req.setAttribute("totalExpencesPer", total==0?0:String.format("%.02f", (totalExpences * 100 / total)));
+        req.setAttribute("totalIncomePer", total==0?0:String.format("%.02f", (totalIncome * 100 / total)));
+        req.setAttribute("totalThisMonthPer", total==0?0:String.format("%.02f", (totalThisMonth * 100 / total)));
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/view/dashboard.jsp");
         dispatcher.forward(req, resp);

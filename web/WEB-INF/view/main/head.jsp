@@ -12,10 +12,11 @@
     <!-- Toastr style -->
     <link href="<c:url value='/assets/css/toastr.min.css' />" rel="stylesheet">
 
+    <link href="<c:url value='/assets/css/datepicker3.css' />" rel="stylesheet">
+
     <!-- Gritter -->
     <link href="<c:url value='/assets/css/jquery.gritter.css' />" rel="stylesheet">
 
     <link href="<c:url value='/assets/css/animate.css' />" rel="stylesheet">
     <link href="<c:url value='/assets/css/style.css' />" rel="stylesheet">
-
 </head>

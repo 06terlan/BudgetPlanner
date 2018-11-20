@@ -53,7 +53,7 @@
         <div class="modal-dialog">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header btn-primary">
-                    <h5 class="modal-title">Add Wallet</h5>
+                    <h5 class="modal-title">Add Transaction</h5>
                 </div>
                 <div class="modal-body">
                     <form method="get" class="form-horizontal" action="">
@@ -78,12 +78,21 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Name</label>
+                            <label class="col-sm-4 control-label">Note</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" required maxlength="50">
+                                <input type="text" class="form-control" name="description" required>
                             </div>
                         </div>
-
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Date</label>
+                            <div class="col-sm-8">
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input type="text" name="date" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">

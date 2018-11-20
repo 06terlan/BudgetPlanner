@@ -28,11 +28,21 @@
 <!-- jQuery UI -->
 <script src="<c:url value='/assets/js/jquery-ui.min.js'/>"></script>
 <script src="<c:url value='/assets/js/icheck.min.js'/>"></script>
+<!-- Data picker -->
+<script src="<c:url value='/assets/js/bootstrap-datepicker.js'/>"></script>
 <script>
     $(document).ready(function () {
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
+        });
+
+        $('.input-group.date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
         });
     });
 </script>

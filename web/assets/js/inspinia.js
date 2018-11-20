@@ -267,7 +267,7 @@ $(function (){
    'use strict';
 
    /*
-   adding wallet
+    adding wallet
     */
     $("#addWalletBtn").click(function () {
         $("#addWallet form")[0].reset();
@@ -314,6 +314,45 @@ $(function (){
                 );
 
                 toastr.success("Wallet added!");
+            });
+        }
+    });
+    /*
+    adding transaction
+    */
+    $("#addTransactionBtn").click(function () {
+        $("#addTransaction form")[0].reset();
+        $("#addTransaction [name]").css("border", "");
+    });
+    $("#addTransaction button.submit").click(function () {
+        let category = $("#addTransaction [name='category']").val(),
+            amount = $("#addTransaction [name='amount']").val().trim(),
+            description = $("#addTransaction [name='description']").val().trim(),
+            date = $("#addTransaction [name='date']").val().trim(),
+            error = true;
+
+        /*$("#addTransaction [name='amount']").css("border", "");
+        $("#addTransaction [name='date']").css("border", "");
+        $("#addTransaction [name='category']").css("border", "");*/
+        $("#addTransaction [name]").css("border", "");
+        if((category > 0)===false){
+            error = false;
+            $("#addTransaction [name='category']").css("border", "1px dotted red");
+        }
+        if(date === ""){
+            error = false;
+            $("#addTransaction [name='date']").css("border", "1px dotted red");
+        }
+        if(amount === "" || isNaN(amount)){
+            error = false;
+            $("#addTransaction [name='amount']").css("border", "1px dotted red");
+        }
+
+        if(error){
+            $("#addTransaction").modal('hide');
+            $.post("/transaction", {category: category, amount: amount, description: description, date: date}).done(function (data) {
+                location.reload();
+                toastr.success("Transaction added!");
             });
         }
     });
