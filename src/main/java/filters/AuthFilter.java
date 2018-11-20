@@ -25,12 +25,14 @@ public class AuthFilter implements Filter {
         HttpSession session = ((HttpServletRequest) servletRequest).getSession(false);
         String loginURI = request.getContextPath() + "/login";
         String assetsURI = request.getContextPath() + "/assets";
+        String registerURI = request.getContextPath() + "/register";
 
         boolean loggedIn = session != null && session.getAttribute("user") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
         boolean assetsRequest = request.getRequestURI().startsWith(assetsURI);
+        boolean registerRequest = request.getRequestURI().startsWith(registerURI);
 
-        if (loggedIn || loginRequest || assetsRequest) {
+        if (loggedIn || loginRequest || assetsRequest || registerRequest) {
             filterChain.doFilter(request, response);
         } else {
             response.sendRedirect(loginURI);

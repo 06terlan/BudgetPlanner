@@ -307,7 +307,7 @@ $(function (){
                         ).append(
                             $("<span>",{
                                 "class": "badge badge-info",
-                                "text": data.balance
+                                "text": "$" + data.balance
                             })
                         )
                     )

@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/login.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/view/login.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -25,7 +25,6 @@ public class LoginServlet extends HttpServlet {
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        int rememberMe = Integer.parseInt(req.getParameter("rememberMe"));
         Map<String, String> messages = new HashMap<String, String>();
 
         if (username == null || username.isEmpty()) {
@@ -34,16 +33,6 @@ public class LoginServlet extends HttpServlet {
 
         if (password == null || password.isEmpty()) {
             messages.put("password", "Please enter password");
-        }
-
-        if (rememberMe > 0) {
-            Cookie c = new Cookie("user", username);
-            c.setMaxAge(30 * 24 * 60 * 60);
-            resp.addCookie(c);
-        } else {
-            Cookie c = new Cookie("user", username);
-            c.setMaxAge(0);
-            resp.addCookie(c);
         }
 
         if (messages.isEmpty()) {
