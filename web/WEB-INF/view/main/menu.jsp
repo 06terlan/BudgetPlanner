@@ -16,11 +16,14 @@
                              </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs" id="wallets">
                         <%
+                            Wallet currentWallet = (Wallet) session.getAttribute("wallet");
+                            pageContext.setAttribute("currentWallet", currentWallet);
                             List<Wallet> wallets = (new WalletDao()).getUserWallets((User) request.getSession().getAttribute("user"));
                             pageContext.setAttribute("wallets", wallets);
                         %>
+
                         <c:forEach items="${wallets}" var="wallet">
-                            <li><a href="home?wallet=${wallet.id}"><i class="fa fa-cc-visa"></i> ${wallet.name}<span class="badge badge-info">$${wallet.balance}</span></a></li>
+                            <li <c:if test="${currentWallet!=null&&wallet.id==currentWallet.id}"> class="active" </c:if> ><a href="/wallet?wallet=${wallet.id}"><i class="fa fa-cc-visa"></i> ${wallet.name}<span class="badge badge-info">$${wallet.balance}</span></a></li>
                         </c:forEach>
 
                         <li class="divider"></li>

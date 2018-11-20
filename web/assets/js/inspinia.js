@@ -298,7 +298,7 @@ $(function (){
                 $("#wallets").prepend(
                     $("<li>").append(
                         $("<a>",{
-                            "href": "/home?wallet=" + data.id,
+                            "href": "/wallet?wallet=" + data.id,
                             "text": " " + data.name
                         }).prepend(
                             $("<i>", {

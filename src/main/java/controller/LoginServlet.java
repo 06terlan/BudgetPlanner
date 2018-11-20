@@ -1,7 +1,9 @@
 package controller;
 
 import dao.UserDao;
+import dao.WalletDao;
 import models.User;
+import models.Wallet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet("/login")
@@ -42,6 +45,12 @@ public class LoginServlet extends HttpServlet {
             if (user != null) {
                 req.getSession().setAttribute("user", user);
                 resp.sendRedirect(req.getContextPath() + "/home");
+
+                //set wallet
+                List<Wallet> wallets = new WalletDao().getUserWallets(user);
+                if(wallets.size() > 0){
+                    req.getSession().setAttribute("wallet", wallets.get(0));
+                }
                 return;
             } else {
                 messages.put("login", "Unknown login, please try again");
