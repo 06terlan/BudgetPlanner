@@ -51,7 +51,10 @@ public class CategoryDao implements Dao<Category> {
         Category category = new Category(rs.getLong("id"));
         category.setName( rs.getString("name") );
         category.setType( rs.getString("type") );
+        category.setParent( new Category(rs.getLong("parent_id")));
+        category.setOwner( new User(rs.getLong("user_id")));
         category.setIcon( rs.getString("icon") );
+        category.setSort_order( rs.getInt("sort_order") );
         return category;
     }
 }
