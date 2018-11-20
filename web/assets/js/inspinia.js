@@ -269,28 +269,28 @@ $(function (){
    /*
    adding wallet
     */
-   $("#addWalletBtn").click(function () {
-       $("#addWallet form")[0].reset();
-       $("#addWallet [name]").css("border", "");
-   });
-   $("#addWallet button.btn-primary").click(function () {
-       let name = $("#addWallet [name='name']").val().trim(),
-           currency = $("#addWallet [name='currency']").val(),
-           initialBalance = $("#addWallet [name='initialBalance']").val().trim(),
-           error = true;
+    $("#addWalletBtn").click(function () {
+        $("#addWallet form")[0].reset();
+        $("#addWallet [name]").css("border", "");
+    });
+    $("#addWallet button.submit").click(function () {
+        let name = $("#addWallet [name='name']").val().trim(),
+            currency = $("#addWallet [name='currency']").val(),
+            initialBalance = $("#addWallet [name='initialBalance']").val().trim(),
+            error = true;
 
-       $("#addWallet [name='name']").css("border", "");
-       $("#addWallet [name='initialBalance']").css("border", "");
-       if(name === ""){
-           error = false;
-           $("#addWallet [name='name']").css("border", "1px dotted red");
-       }
-       if(initialBalance === "" || isNaN(initialBalance)){
-           error = false;
-           $("#addWallet [name='initialBalance']").css("border", "1px dotted red");
-       }
+        $("#addWallet [name='name']").css("border", "");
+        $("#addWallet [name='initialBalance']").css("border", "");
+        if(name === ""){
+            error = false;
+            $("#addWallet [name='name']").css("border", "1px dotted red");
+        }
+        if(initialBalance === "" || isNaN(initialBalance)){
+            error = false;
+            $("#addWallet [name='initialBalance']").css("border", "1px dotted red");
+        }
 
-       if(error){
+        if(error){
             $("#addWallet").modal('hide');
             $.post("/wallet", {name: name, currency: currency, initialBalance: initialBalance}).done(function (data) {
                 data = JSON.parse(data);
@@ -315,8 +315,59 @@ $(function (){
 
                 toastr.success("Wallet added!");
             });
-       }
-   });
+        }
+    });
+    /*
+   adding category
+    */
+    $("#addCategoryBtn").click(function () {
+        $("#addCategory form")[0].reset();
+        $("#addCategory [name]").css("border", "");
+    });
+    $("#addCategory button.submit").click(function () {
+        let name = $("#addCategory [name='name']").val().trim(),
+            icon = $("#addCategory [name='icon']").val().trim(),
+            sort_order = $("#addCategory [name='sort_order']").val(),
+            error = true;
+
+        $("#addCategory [name='name']").css("border", "");
+        $("#addCategory [name='initialBalance']").css("border", "");
+        if(name === ""){
+            error = false;
+            $("#addCategory [name='name']").css("border", "1px dotted red");
+        }
+        if(icon === ""){
+            error = false;
+            $("#addCategory [name='icon']").css("border", "1px dotted red");
+        }
+        if(isNaN(sort_order)){
+            error = false;
+            $("#addCategory [name='initialBalance']").css("border", "1px dotted red");
+        }
+
+        if(error){
+            $("#addCategory").modal('hide');
+            $.post("/category", $("#addCategory form").serializeArray())
+                .done(function (data) {
+                    data = JSON.parse(data);
+                    let parentElement;
+                    if (data.parent_id > 0) {
+                        parentElement = $("ul[data-parent='"+data.parent_id+"']").append(
+                            $("<li>").append(
+                                $("<a>").append($("<i>").addClass("fa " + data.icon)).append(data.name)
+                            )
+                        );
+                    } else {
+                        parentElement = $("#side-menu li:last").before(
+                            $("<li>")
+                                .append($("<a>").append($("<i>").addClass("fa " + data.icon)).append(data.name))
+                                .append($("<ul>").attr("data-parent", data.parent_id).addClass("nav nav-second-level collapse"))
+                        );
+                    }
+                toastr.success("Category added!");
+            });
+        }
+    });
 });
 
 
