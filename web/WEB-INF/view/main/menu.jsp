@@ -39,14 +39,13 @@
                 <c:if test="${category.parent.id == 0 || category.parent.id == null}">
                 <li>
                     <a href="javascript: void(0)"><i class="fa ${category.icon}"></i> <span class="nav-label">${category.name}</span></a>
-                    <% int counter = 0; %>
-                    <c:forEach items="${categories}" var="childCategory">
-                        <c:if test="${childCategory.parent_id == category.id}">
-                            <% if (counter++ == 0) { %><ul class="nav nav-second-level"><% } %>
-                            <li><a href="javascript: void(0)"><i class="fa ${childCategory.icon}"></i> ${childCategory.name}</a></li>
-                        </c:if>
-                    </c:forEach>
-                    <% if (counter > 0) { counter=0; %></ul><% } %>
+                    <ul data-parent="${category.id}" class="nav nav-second-level">
+                        <c:forEach items="${categories}" var="childCategory">
+                            <c:if test="${childCategory.parent_id == category.id}">
+                                <li><a href="javascript: void(0)"><i class="fa ${childCategory.icon}"></i> ${childCategory.name}</a></li>
+                            </c:if>
+                        </c:forEach>
+                    </ul>
                 </li>
                 </c:if>
             </c:forEach>
