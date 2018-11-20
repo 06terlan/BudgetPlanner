@@ -86,15 +86,21 @@ public class Category implements Model {
         return owner;
     }
 
+    public long getUser_id() { return user_id; }
+
     public void setOwner(User owner) {
         this.owner = owner;
+        this.user_id = owner.getId();
     }
 
     public Category getParent() {
         return parent;
     }
 
+    public long getParent_id() { return parent_id; }
+
     public void setParent(Category parent) {
         this.parent = parent;
+        this.parent_id = parent.getId();
     }
 }

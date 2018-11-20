@@ -23,6 +23,8 @@ public class Wallet implements Model {
         return owner;
     }
 
+    public long getUser_id() { return user_id; }
+
     public void setOwner(User owner) { this.owner = owner; }
 
     public String getName() {

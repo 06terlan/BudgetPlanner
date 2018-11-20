@@ -3,6 +3,7 @@ package dao;
 import DB.DBConnection;
 import models.Model;
 
+import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.*;
 
@@ -66,12 +67,10 @@ public interface Dao<T extends Model> {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO " + this.getTableName() + "(" + String.join(",", fields) + ") VALUES (" + String.join(",", values) + ")", Statement.RETURN_GENERATED_KEYS);
 
             for (int i = 0; i < fields.length; i++) {
-                try {
-                    statement.setString(i, t.getClass().getField(fields[i]).toString());
-                } catch (NoSuchFieldException e) {
-                    // do nothing
-                }
+                statement.setString(i+1, Model.getProperty(t, fields[i]).toString());
             }
+            System.out.println("INSERT INTO " + this.getTableName() + "(" + String.join(",", fields) + ") VALUES (" + String.join(",", values) + ")");
+            System.out.println(statement.toString());
 
             int result = statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
@@ -98,12 +97,8 @@ public interface Dao<T extends Model> {
             }
             PreparedStatement statement = connection.prepareStatement("UPDATE " + this.getTableName() + " SET " + String.join("=?,", fields) + "=? WHERE id = " + t.getId());
 
-            for (int i = 1; i <= fields.length; i++) {
-                try {
-                    statement.setString(i, t.getClass().getField(fields[i]).toString());
-                } catch (NoSuchFieldException e) {
-                    // do nothing
-                }
+            for (int i = 0; i < fields.length; i++) {
+                statement.setString(i+1, Model.getProperty(t, fields[i]).toString());
             }
             int result = statement.executeUpdate();
             if(result > 0) {

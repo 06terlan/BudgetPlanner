@@ -41,6 +41,10 @@ public class User implements Model {
         return password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public static String getPasswordHash(String password) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");

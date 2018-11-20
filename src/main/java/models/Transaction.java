@@ -8,7 +8,9 @@ public class Transaction implements Model {
     private double amount;
     private String type;
     private Category category;
+    private long category_id;
     private Wallet wallet;
+    private long wallet_id;
     private String description;
     private Date date;
 
@@ -58,16 +60,22 @@ public class Transaction implements Model {
         return category;
     }
 
+    public long getCategory_id() { return category_id; }
+
     public void setCategory(Category category) {
         this.category = category;
+        this.category_id = category.getId();
     }
 
     public Wallet getWallet() {
         return wallet;
     }
 
+    public long getWallet_id() { return wallet_id; }
+
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
+        this.wallet_id = wallet.getId();
     }
 
     public String getDescription() {
