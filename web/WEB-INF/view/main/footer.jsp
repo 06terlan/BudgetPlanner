@@ -22,6 +22,9 @@
 <!-- Toastr -->
 <script src="<c:url value='/assets/js/toastr.min.js'/>"></script>
 
+<!-- ChartJS-->
+<script src="<c:url value='/assets/js/Chart.min.js'/>"></script>
+
 <!-- jQuery UI -->
 <script src="<c:url value='/assets/js/jquery-ui.min.js'/>"></script>
 <script src="<c:url value='/assets/js/icheck.min.js'/>"></script>
