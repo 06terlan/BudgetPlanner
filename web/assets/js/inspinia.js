@@ -370,7 +370,7 @@ $(function (){
             error = true;
 
         $("#addCategory [name='name']").css("border", "");
-        $("#addCategory [name='initialBalance']").css("border", "");
+        $("#addCategory [name='icon']").css("border", "");
         if(name === ""){
             error = false;
             $("#addCategory [name='name']").css("border", "1px dotted red");
@@ -381,7 +381,7 @@ $(function (){
         }
         if(isNaN(sort_order)){
             error = false;
-            $("#addCategory [name='initialBalance']").css("border", "1px dotted red");
+            $("#addCategory [name='sort_order']").css("border", "1px dotted red");
         }
 
         if(error){
@@ -402,6 +402,7 @@ $(function (){
                                 .append($("<a>").append($("<i>").addClass("fa " + data.icon)).append(data.name))
                                 .append($("<ul>").attr("data-parent", data.parent_id).addClass("nav nav-second-level collapse"))
                         );
+                        $("#addCategory [name='sort_order']").append($("<option>").attr("value", data.id).text(data.name));
                     }
                 toastr.success("Category added!");
             });
