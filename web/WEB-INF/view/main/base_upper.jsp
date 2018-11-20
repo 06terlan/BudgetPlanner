@@ -87,3 +87,18 @@
 
             </nav>
         </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-9">
+                <h2><strong>Wallet Name :</strong> ${currentWallet.name}</h2>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <strong>Balance :</strong> <span class="label label-primary">${currentWallet.balance}</span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3">
+                <h2>
+                    <a data-toggle="modal" class="btn btn-primary" href="#addTransaction"><i class="fa fa-plus"></i> Add transaction</a>
+                </h2>
+            </div>
+        </div>

@@ -36,4 +36,17 @@ public class WalletServlet extends HttpServlet {
             printWriter.print( gson.toJson(wallet) );
         }
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if(req.getParameterMap().containsKey("wallet")){
+            WalletDao walletDao = new WalletDao();
+            int id = Integer.parseInt(req.getParameter("wallet"));
+            Wallet wallet = walletDao.getWalletById(id);
+
+            req.getSession().setAttribute("wallet", wallet);
+
+            resp.sendRedirect(req.getHeader("referer"));
+        }
+    }
 }

@@ -49,6 +49,51 @@
         </div>
     </div>
 
+    <div class="modal inmodal in" id="addTransaction" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header btn-primary">
+                    <h5 class="modal-title">Add Wallet</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="get" class="form-horizontal" action="">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Category</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="category" required>
+                                    <c:forEach items="${categories}" var="category">
+                                        <c:if test="${category.parent.id > 0}">
+                                            <option value="${category.id}">${category.name}</option>
+                                        </c:if>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">How much</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" name="amount" required>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="name" required maxlength="50">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary submit">Add</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <%@ page import="models.Category" %>
     <div class="modal inmodal in" id="addCategory" tabindex="-1" role="dialog">
         <div class="modal-dialog">

@@ -47,6 +47,25 @@ public class WalletDao implements Dao<Wallet> {
         return wallets;
     }
 
+    public Wallet getWalletById(int id) {
+        DBConnection database = DBConnection.getInstance();
+        Connection connection = database.getConnection();
+        Wallet wallet = null;
+
+        try {
+            Statement statement = connection.createStatement();
+            String sql="SELECT * FROM " + this.getTableName() + " WHERE id = " + id + "";
+            ResultSet rs = statement.executeQuery(sql);
+
+            if (rs.next()){
+                wallet = this.extractFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wallet;
+    }
+
     @Override
     public Wallet extractFromResultSet(ResultSet rs) throws SQLException {
         Wallet wallet = new Wallet(rs.getLong("id"));
