@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-8">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div>
@@ -70,13 +70,22 @@
                         </h3>
                         <small>Monthly info.</small>
                     </div>
-
                     <div>
                         <canvas id="lineChart" height="187" width="802" style="width: 802px; height: 187px;"></canvas>
                     </div>
-
-
-
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Transaction Category</h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="text-center">
+                        <canvas id="transaction_category" height="140"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,5 +203,40 @@
         let ctx = document.getElementById("lineChart").getContext("2d");
         let myNewChart = new Chart(ctx).Line(lineData, lineOptions);
 
+        //Transaction Category
+        let polarData = [
+            <c:forEach items="${categoryTotal}" var="item" varStatus="loop">
+                {
+                    value: ${item.value},
+                    color: "${categoryColor[loop.index % 10]}",
+                    highlight: "#1ab394",
+                    label: "${item.key}"
+                },
+            </c:forEach>
+            {
+                value: 0,
+                label: ""
+            }
+        ];
+
+        let polarOptions = {
+            scaleShowLabelBackdrop: true,
+            scaleBackdropColor: "rgba(255,255,255,0.75)",
+            scaleBeginAtZero: true,
+            scaleBackdropPaddingY: 1,
+            scaleBackdropPaddingX: 1,
+            scaleShowLine: true,
+            segmentShowStroke: true,
+            segmentStrokeColor: "#fff",
+            segmentStrokeWidth: 2,
+            animationSteps: 100,
+            animationEasing: "easeOutBounce",
+            animateRotate: true,
+            animateScale: false,
+            responsive: true,
+
+        };
+        let ctx1 = document.getElementById("transaction_category").getContext("2d");
+        let myNewChart1 = new Chart(ctx1).PolarArea(polarData, polarOptions);
     });
 </script>

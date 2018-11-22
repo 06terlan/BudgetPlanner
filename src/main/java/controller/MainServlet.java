@@ -30,6 +30,7 @@ public class MainServlet extends HttpServlet {
         WalletDao walletDao = new WalletDao();
         List<Wallet> userWallets =  walletDao.getUserWallets(user);
         List<Transaction> allTrans = new ArrayList<>();
+        Map<String, Double> categoryTotal = new HashMap<>();
 
         CategoryDao categoryDao = new CategoryDao();
         List<Category> categories = categoryDao.getUserCategories(user);
@@ -57,9 +58,15 @@ public class MainServlet extends HttpServlet {
                         totalExpences += transaction.getAmount();
                         monthlyExpence[transaction.getDate2().getMonth()]+= transaction.getAmount();
                     }
+
+                    if(!categoryTotal.containsKey(category.getName())) categoryTotal.put(category.getName(), 0.0);
+                    categoryTotal.put(category.getName(), categoryTotal.get(category.getName()) + transaction.getAmount());
                 }
             }
         }
+
+        req.setAttribute("categoryColor", new String[]{"#a3e1d4" ,"#dedede" ,"#b5b8cf" ,"#bb9292" ,"#882d2d" ,"#77a777" ,"#629bbf" ,"#f8ac59" ,"#6390bb" ,"#0a3e6f"});
+        req.setAttribute("categoryTotal", categoryTotal);
 
         req.setAttribute("allTrans", allTrans);
         req.setAttribute("allTransCount", allTrans.size());
