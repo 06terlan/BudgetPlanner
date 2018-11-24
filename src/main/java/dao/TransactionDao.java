@@ -3,6 +3,7 @@ package dao;
 import DB.DBConnection;
 import models.Category;
 import models.Transaction;
+import models.User;
 import models.Wallet;
 
 import java.sql.Connection;
@@ -39,6 +40,27 @@ public class TransactionDao implements Dao<Transaction> {
         try {
             Statement statement=connection.createStatement();
             String sql="SELECT * FROM transaction WHERE category_id = " + category.getId() + " AND wallet_id = " + wallet.getId() + ";" ;
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()){
+                Transaction transaction = this.extractFromResultSet(rs);
+                transactions.add(transaction);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactions;
+    }
+
+    public ArrayList<Transaction> getTransactions(Category category, User user) {
+        this.category = category;
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        DBConnection database = DBConnection.getInstance();
+        Connection connection = database.getConnection();
+
+        try {
+            Statement statement=connection.createStatement();
+            String sql="SELECT * FROM transaction WHERE category_id = " + category.getId() + " AND wallet_id IN (SELECT w.id FROM wallet WHERE user_id = " + user.getId() + ");" ;
             ResultSet rs = statement.executeQuery(sql);
 
             while (rs.next()){

@@ -31,6 +31,7 @@ public class MainServlet extends HttpServlet {
         List<Wallet> userWallets =  walletDao.getUserWallets(user);
         List<Transaction> allTrans = new ArrayList<>();
         Map<String, Double> categoryTotal = new HashMap<>();
+        Wallet wallet = (Wallet) req.getSession().getAttribute("wallet");
 
         CategoryDao categoryDao = new CategoryDao();
         List<Category> categories = categoryDao.getUserCategories(user);
@@ -39,29 +40,28 @@ public class MainServlet extends HttpServlet {
         Double[] monthlyExpence = new Double[]{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 
         double total = 0, totalExpences = 0, totalIncome = 0, totalThisMonth = 0;
-        for (Wallet wallet : userWallets){
-            for (Category category : categories){
-                TransactionDao transactionDao = new TransactionDao();
-                List<Transaction> transactions = transactionDao.getTransactions(category, wallet);
+        if(wallet != null)
+        for (Category category : categories){
+            TransactionDao transactionDao = new TransactionDao();
+            List<Transaction> transactions = transactionDao.getTransactions(category, wallet);
 
-                for (Transaction transaction: transactions){
-                    allTrans.add(transaction);
-                    total += transaction.getAmount();
-                    if(transaction.getDate2().getMonth() == Calendar.getInstance().get(Calendar.MONTH)){
-                        totalThisMonth += transaction.getAmount();
-                    }
-                    if(category.getType().equals("income")){
-                        totalIncome += transaction.getAmount();
-                        monthlyIncome[transaction.getDate2().getMonth()]+= transaction.getAmount();
-                    }
-                    else if(category.getType().equals("expence")){
-                        totalExpences += transaction.getAmount();
-                        monthlyExpence[transaction.getDate2().getMonth()]+= transaction.getAmount();
-                    }
-
-                    if(!categoryTotal.containsKey(category.getName())) categoryTotal.put(category.getName(), 0.0);
-                    categoryTotal.put(category.getName(), categoryTotal.get(category.getName()) + transaction.getAmount());
+            for (Transaction transaction: transactions){
+                allTrans.add(transaction);
+                total += transaction.getAmount();
+                if(transaction.getDate2().getMonth() == Calendar.getInstance().get(Calendar.MONTH)){
+                    totalThisMonth += transaction.getAmount();
                 }
+                if(category.getType().equals("income")){
+                    totalIncome += transaction.getAmount();
+                    monthlyIncome[transaction.getDate2().getMonth()]+= transaction.getAmount();
+                }
+                else if(category.getType().equals("expence")){
+                    totalExpences += transaction.getAmount();
+                    monthlyExpence[transaction.getDate2().getMonth()]+= transaction.getAmount();
+                }
+
+                if(!categoryTotal.containsKey(category.getName())) categoryTotal.put(category.getName(), 0.0);
+                categoryTotal.put(category.getName(), categoryTotal.get(category.getName()) + transaction.getAmount());
             }
         }
 

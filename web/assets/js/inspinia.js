@@ -391,19 +391,20 @@ $(function (){
                     data = JSON.parse(data);
                     let parentElement;
                     if (data.parent_id > 0) {
-                        parentElement = $("ul[data-parent='"+data.parent_id+"']").append(
+                        parentElement = $("body").find("ul[data-parent='"+data.parent_id+"']").append(
                             $("<li>").append(
-                                $("<a>").append($("<i>").addClass("fa " + data.icon)).append(data.name)
+                                $("<a>", {href: "/category?id=" + data.id}).append($("<i>").addClass("fa " + data.icon)).append(data.name)
                             )
                         );
                     } else {
                         parentElement = $("#side-menu li:last").before(
                             $("<li>")
                                 .append($("<a>").append($("<i>").addClass("fa " + data.icon)).append(data.name))
-                                .append($("<ul>").attr("data-parent", data.parent_id).addClass("nav nav-second-level collapse"))
+                                .append($("<ul>").attr("data-parent", data.id).addClass("nav nav-second-level collapse"))
                         );
-                        $("#addCategory [name='sort_order']").append($("<option>").attr("value", data.id).text(data.name));
+                        $("#addCategory [name='parent_id']").append($("<option>").attr("value", data.id).text(data.name));
                     }
+                    $('#side-menu').metisMenu();
                 toastr.success("Category added!");
             });
         }

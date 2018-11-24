@@ -45,7 +45,7 @@
                     <ul data-parent="${category.id}" class="nav nav-second-level">
                         <c:forEach items="${categories}" var="childCategory">
                             <c:if test="${childCategory.parent_id == category.id}">
-                                <li><a href="javascript: void(0)"><i class="fa ${childCategory.icon}"></i> ${childCategory.name}</a></li>
+                                <li><a href="<c:url value="/category"><c:param name="id" value="${category.id}" /></c:url>"><i class="fa ${childCategory.icon}"></i> ${childCategory.name}</a></li>
                             </c:if>
                         </c:forEach>
                     </ul>
